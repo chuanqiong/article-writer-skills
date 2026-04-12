@@ -11,11 +11,21 @@ description: Use when preparing illustrations, running final checks, or generati
 ## When to Use
 草稿已经基本成型，接下来要补图、做发布前检查、生成微信 HTML、视频脚本成品或通用发布稿时，使用本技能。
 
+## Required Questions
+
+开始前，先问这 3 个：
+
+1. 这篇文章最终发在哪里？（公众号 / 视频平台 / 博客）
+2. 你需要配图吗？大概要几张？有没有风格偏好？
+3. 有没有已经准备好的封面图或素材图？
+
 ## Hard Gates
-- `/publish` 前必须读取 `.content/config.json` 的 `workspace`；不要猜平台。
-- `wechat` 需要配图时，先完成 `/images` 再发布。
-- `video` 不跑静态配图流程，改用 Hook 和分镜说明。
-- 终检结果如果还有阻塞项，不能把状态说成“可发布”。
+- 不要猜测 workspace——`/publish` 前必须读取 `.content/config.json` 的 `workspace`。
+- 不要在 `wechat` 下跳过配图直接发布——先完成 `/images`。
+- 不要在 `video` 下生成 `wechat.html`——不跑静态配图流程，改用 Hook 和分镜说明。
+- 不要在终检有阻塞项时说”可发布”。
+- 不要把”封面 prompt”说成”已经生成封面成品”。
+- 不要把样式配置问题和内容问题混在一起处理。
 - `newspic` 目前只做规划分支，不应假装已具备真实发布能力。
 
 ## Workflow
@@ -61,6 +71,20 @@ description: Use when preparing illustrations, running final checks, or generati
 - 在 `video` 下错误生成 `wechat.html`。
 - 把样式配置问题和内容问题混在一起处理。
 - 把“封面 prompt”误说成“已经生成封面成品”。
+
+## Quality Self-Check
+
+### error（阻塞）
+- [ ] 没确认 workspace 就开始生成发布产物
+- [ ] 终检有阻塞项但标注为"可发布"
+
+### warning（需要修正）
+- [ ] general workspace 没有确认是否需要配图和 SEO
+- [ ] 封面 prompt 缺少强动词、构图或光线描述
+
+### info（建议改进）
+- [ ] 没有提醒用户是否需要继续调用 wechat-draft-publishing
+- [ ] 没有输出所选主题、背景、prompt 的完整信息
 
 ## Reference Files
 - `references/workspaces/wechat.md`

@@ -11,9 +11,21 @@ description: Use when routing an article-writing request across stages or worksp
 ## When to Use
 当用户刚开始描述写作需求、问“下一步做什么”、中途切换目标，或你不确定应该调用哪个 article skill 时，先运行本技能。
 
+## Required Questions
+
+收到写作相关请求后，先问这 3 个：
+
+1. 这篇文章要发在哪个平台？（公众号 / 视频号 / 博客 / 知乎 / 其他）
+2. 你现在处于哪个阶段？（还没想好写什么 / 已有方向但缺资料 / 已有资料要开始写 / 已有初稿要改 / 已改好要发）
+3. 有没有参考文章或风格要求？（给链接或文件）
+
 ## Hard Gates
-- 若存在 `.content/config.json`，必须先读取 `workspace` 字段；不要猜 workspace。
-- 必须先判断阶段，再决定下一技能；不要因为用户一句“帮我写”就跳过 brief、选题、素材或审校。
+- 不要猜测 workspace——必须从 `.content/config.json` 读取 `workspace` 字段。
+- 不要因为用户一句”帮我写”就跳过 brief、选题、素材或审校。
+- 不要把 `/write` 当流程入口——它是准备完成后的阶段。
+- 不要在 `wechat` 下跳过配图约束，不要在 `video` 下生成公众号格式。
+- 不要把”润色”直接当润色处理——先判断是否应进入真实性检查或三遍审校。
+- 不要把”学我的风格”直接当 planning 处理——先调用 `article-style-learning`。
 - 所有强制等待点都要保留：可行性结论、选题方向、写作模式、提纲解析、重大审校修改，都不能自动越过。
 
 ## Workflow
@@ -55,6 +67,19 @@ description: Use when routing an article-writing request across stages or worksp
 - 在 `wechat` 下忘记配图和发布约束，在 `video` 下错误生成公众号格式。
 - 用户只说“润色一下”就直接改文，没先判断是否应该进入真实性检查或三遍审校。
 - 用户明明要“学我的风格”，却直接进入 planning 或 writing，导致风格要求丢失。
+
+## Quality Self-Check
+
+### error（阻塞）
+- [ ] 没读 workspace 就开始分发
+- [ ] 跳过了用户确认直接进入下一阶段
+
+### warning（需要修正）
+- [ ] 传递给下游的上下文不足，只有一句"继续"
+- [ ] 用户中途切换目标，但没有重新判断阶段
+
+### info（建议改进）
+- [ ] 没有概括当前阶段需要遵守的硬规则（段落长度、配图数量等）
 
 ## Reference Files
 - `references/workspaces/wechat.md`

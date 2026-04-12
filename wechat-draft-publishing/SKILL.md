@@ -11,11 +11,23 @@ description: Use when pushing a formatted HTML article into a WeChat public acco
 ## When to Use
 已经拿到 `publish/wechat.html`，并且用户明确要推送到公众号草稿箱，而不是只做本地预览时，使用本技能。
 
+## Required Questions
+
+开始前，先问这 3 个：
+
+1. 微信公众号的 AppID 和 AppSecret 配置好了吗？
+2. 服务器 IP 已经加到微信白名单了吗？
+3. 封面图准备好了吗？路径是什么？
+
 ## Hard Gates
-- 输入必须是 `.html` 文件，不是 markdown。
-- HTML 头部必须带微信 frontmatter。
-- 必须先确认 `WECHAT_APP_ID` 和 `WECHAT_APP_SECRET`，或 `.content/config.json` 里的微信配置存在。
-- 服务器 IP 未进白名单、摘要缺失、封面图缺失、图片不可读时，必须阻塞。
+- 不要把 markdown 直接拿去推草稿——输入必须是 `.html` 文件。
+- 不要跳过 frontmatter 验证——HTML 头部必须带微信 frontmatter（title、author、digest、cover）。
+- 不要在凭证和白名单未确认时推送——必须先确认 `WECHAT_APP_ID` 和 `WECHAT_APP_SECRET`。
+- 不要跳过 IP 白名单检查——服务器 IP 未进白名单时必须阻塞。
+- 不要忘记写 `digest` 或 `cover`。
+- 不要只检查本地预览就推送——必须检查微信凭证和 IP 白名单。
+- 不要把 `appSecret` 提交进仓库。
+- 摘要缺失、封面图缺失、图片不可读时，必须阻塞。
 
 ## Workflow
 1. 检查输入文件是否为 `publish/wechat.html` 或同类 HTML。
@@ -45,6 +57,22 @@ description: Use when pushing a formatted HTML article into a WeChat public acco
 - 把 markdown 直接拿去推草稿。
 - 忘记写 `digest` 或 `cover`。
 - 只检查本地预览，不检查微信凭证和 IP 白名单。
+
+## Quality Self-Check
+
+### error（阻塞）
+- [ ] 输入不是 .html 文件
+- [ ] frontmatter 缺必填字段
+- [ ] 微信凭证未配置
+- [ ] 服务器 IP 未进白名单
+
+### warning（需要修正）
+- [ ] 图片超过 2MB 没压缩
+- [ ] 封面不是 900x500
+
+### info（建议改进）
+- [ ] 没有提醒用户推送后去后台复核草稿
+- [ ] 没有在推送前建议本地预览 HTML
 
 ## Reference Files
 - `references/publishing/wechat-frontmatter.md`

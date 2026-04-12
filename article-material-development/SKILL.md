@@ -11,11 +11,20 @@ description: Use when collecting, expanding, or structuring real materials for a
 ## When to Use
 用户需要搜索个人素材、扩展一条经历、快速补细节、写到一半卡住表达，或准备进入写稿前想确认素材够不够时，使用本技能。
 
+## Required Questions
+
+开始前，先问这 3 个：
+
+1. 你手上有没有跟这个主题相关的经历、笔记、截图或聊天记录？
+2. 这些素材存在哪里？（文件夹路径 / 笔记软件 / 聊天记录 / 照片）
+3. 你觉得哪个经历或细节最有说服力？为什么？
+
 ## Hard Gates
-- `/collect` 只搜索现有素材，不造素材。
-- `/extract` 和 `/expand` 只能通过提问帮助用户回忆，不输出可直接粘贴的成文段落。
-- `/hint` 只给结构，不给示例正文。
-- 素材如果无法支撑目标，必须说清楚缺口。
+- 不要用"合理脑补"填充用户没提供的细节——这会直接破坏真实性。
+- `/collect` 只搜索现有素材，不要造素材。
+- `/extract` 和 `/expand` 只能通过提问帮助用户回忆，不要输出可直接粘贴的成文段落。
+- `/hint` 只给结构，不要给示例正文。
+- 素材如果无法支撑目标，不要假装够用——必须说清楚缺口。
 
 ## Workflow
 1. `/collect`:
@@ -50,6 +59,20 @@ description: Use when collecting, expanding, or structuring real materials for a
 - 用“合理脑补”填细节，这会直接破坏真实性。
 - 搜到素材后不做分层，导致用户无法判断够不够。
 - 把 `/hint` 变成代写。
+
+## Quality Self-Check
+
+### error（阻塞）
+- [ ] 用"合理脑补"填充了用户没提供的细节
+- [ ] 在 `/hint` 中给出了示例正文
+
+### warning（需要修正）
+- [ ] 搜到素材后没做 A/B/C/D 分级
+- [ ] 素材有缺口但没告知用户
+
+### info（建议改进）
+- [ ] 没有追问"你还有没有其他相关经历"
+- [ ] 没有建议用户把素材归档到 `materials/` 目录
 
 ## Reference Files
 - `article-authenticity-editing`

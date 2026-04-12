@@ -11,11 +11,22 @@ description: Use when defining article requirements, checking feasibility, or ch
 ## When to Use
 用户还没有稳定 brief、想评估题目是否值得做、要选题方向、要估算时间成本或需要推荐写作模式时，使用本技能。
 
+## Required Questions
+
+开始前，先问这 3 个：
+
+1. 这篇文章的核心观点是什么？你想让读者看完后记住什么？
+2. 你的目标读者是谁？他们在什么场景下会读这篇文章？
+3. 有没有必须包含的真实经历或数据？
+
 ## Hard Gates
-- 先确认 workspace 规则，再写 brief；不同 workspace 的质量目标不同。
-- 可行性预检至少覆盖素材可得性、时间成本、质量目标、知识门槛四项。
-- 只推荐写作模式，不能替用户选择写作模式。
-- 至少给出 3 个差异化方向，且必须等待用户选择。
+- 不要跳过 workspace 规则确认就写 brief——不同 workspace 的质量目标不同。
+- 不要跳过可行性预检——至少覆盖素材可得性、时间成本、质量目标、知识门槛四项。
+- 不要替用户选择写作模式——只能推荐。
+- 不要只给 1-2 个方向——至少 3 个差异化方向，且必须等待用户选择。
+- 不要只给标题不给结构——用户没法选。
+- 不要发现素材不足还给出高真实性承诺。
+- 不要用标题技巧掩盖论点空洞——后面写作会无料可写。
 - 热点、标题、金句、爆款检查都属于辅助判断，不能替代选题结构本身。
 
 ## Workflow
@@ -72,6 +83,20 @@ description: Use when defining article requirements, checking feasibility, or ch
 - 只给标题，不给结构和风险，导致用户没法选。
 - 发现素材不足却还给出高真实性承诺。
 - 用标题技巧掩盖论点空洞，导致后面写作无料可写。
+
+## Quality Self-Check
+
+### error（阻塞）
+- [ ] 没做可行性预检就给方向
+- [ ] 只给了 1-2 个方向（至少 3 个）
+
+### warning（需要修正）
+- [ ] 方向之间只是换皮标题，切入角度雷同
+- [ ] 没有评估每个方向的素材可得性
+
+### info（建议改进）
+- [ ] 没有询问用户是否关心传播性
+- [ ] 没有把 style-profile 写进 brief（如果已有）
 
 ## Reference Files
 - `references/workspaces/wechat.md`

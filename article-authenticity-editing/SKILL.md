@@ -11,13 +11,23 @@ description: Use when checking authenticity, lowering AI tone, or running conten
 ## When to Use
 已经有 `draft.md`，用户要做真实性检查、降 AI 味、三遍审校、精修发稿前版本时，使用本技能。
 
+## Required Questions
+
+开始前，先问这 3 个：
+
+1. 这篇文章的目标 AI 味是多少？（< 30% / < 20% / 越低越好）
+2. 有没有已经学好的 style-profile？（如果有，优先保住作者风格）
+3. 你更在意哪个方面？（事实准确性 / 自然程度 / 整体精修）
+
 ## Hard Gates
-- 先做真实性判断，再决定怎么改。
-- 三遍顺序固定为 `content -> style -> detail`。
-- style pass 必须结合本仓库的 anti-AI references，不要只说“更自然一点”。
-- 如果事实、结构或引用有硬伤，不能直接跳到 style pass。
-- humanize 必须有强度档位: `gentle`, `medium`, `aggressive`。
-- 有 `style-profile` 时，先保风格特征，再删 AI 痕迹；不要把作者习惯误判成噪音。
+- 不要跳过真实性判断就直接改文。
+- 不要改变三遍顺序——固定为 `content -> style -> detail`。
+- 不要只说”更自然一点”——style pass 必须结合本仓库的 anti-AI references。
+- 不要在事实、结构或引用有硬伤时跳到 style pass——先修事实。
+- humanize 必须有强度档位: `gentle`, `medium`, `aggressive`——不要默认 medium 不告知用户。
+- 不要把作者习惯误判成噪音——有 `style-profile` 时，先保风格特征，再删 AI 痕迹。
+- 不要用更多套话替换旧套话——看起来更”润”但更假。
+- 不要只改词不改空洞内容。
 
 ## Workflow
 1. `/authentic`
@@ -69,6 +79,20 @@ description: Use when checking authenticity, lowering AI tone, or running conten
 - style pass 先于事实修正。
 - 用更多套话替换旧套话，看起来更“润”但更假。
 - 为了去 AI 痕迹，把作者原本有辨识度的表达也一起洗掉。
+
+## Quality Self-Check
+
+### error（阻塞）
+- [ ] 有事实硬伤但没修就开始 style pass
+- [ ] 用 aggressive 档位但没有告知用户改动范围
+
+### warning（需要修正）
+- [ ] 有 style-profile 但审校时没比对
+- [ ] 同一句式模式连续出现超过阈值
+
+### info（建议改进）
+- [ ] 没有给出质量评分（1-10 分 × 5 维度）
+- [ ] 没有说明当前 AI 味是"已达标"还是"从高降到中"
 
 ## Reference Files
 - `references/anti-ai/boilerplate.md`
